@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Instagram } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -68,6 +68,36 @@ function LinkCard({ icon, title, actionText, href, delay = 0 }: LinkCardProps) {
 }
 
 export default function App() {
+  // Guardamos o tamanho da tela para travar o vídeo
+  // Isso previne o bug do iOS/Android onde o 100vh muda ao rolar a página
+  const [videoSize, setVideoSize] = useState({ width: '100vw', height: '100vh' });
+
+  useEffect(() => {
+    let lastWidth = window.innerWidth;
+    
+    const updateSize = () => {
+      setVideoSize({ 
+        width: `${window.innerWidth}px`, 
+        height: `${window.innerHeight}px` 
+      });
+    };
+    
+    // Atualiza imediatamente na montagem
+    updateSize();
+
+    // Atualiza apenas se a LARGURA mudar (ex: rotacionar o celular)
+    // Assim ignoramos a mudança de altura ao rolar a página
+    const handleResize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        updateSize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#080111] text-[#f9f9f9] selection:bg-[#7241E3]/30 font-satoshi overflow-x-hidden relative flex flex-col items-center">
       {/* Background glow effects */}
@@ -75,13 +105,16 @@ export default function App() {
       <div className="fixed -bottom-48 -right-48 bg-glow pointer-events-none" />
 
       {/* Background Video */}
-      <div className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-0 overflow-hidden mix-blend-screen">
+      <div 
+        className="fixed top-0 left-0 pointer-events-none z-0 overflow-hidden mix-blend-screen"
+        style={{ width: videoSize.width, height: videoSize.height }}
+      >
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover scale-[1.35] opacity-60"
           src="/videobg.mp4" 
         />
         {/* Divs para escurecer o vídeo e melhorar a leitura dos textos */}

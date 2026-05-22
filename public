@@ -1,0 +1,9 @@
+bio-site/
+├── public/
+│   ├── profile.png
+│   └── videobg.mp4
+├── src/
+│   ├── App.tsx
+│   └── ...
+├── package.json
+└── vite.config.ts

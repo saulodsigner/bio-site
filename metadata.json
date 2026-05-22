@@ -1,0 +1,8 @@
+{
+  "name": "Saulo Lima - Links",
+  "description": "Bio site profissional do designer Saulo Lima com orçamentos e portfólio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

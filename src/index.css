@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer components {
+  .bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(114, 65, 227, 0.15) 0%, rgba(59, 12, 169, 0.05) 50%, transparent 80%);
+    filter: blur(80px);
+    z-index: 0;
+  }
+  
+  .card-gradient {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+  }
+  
+  .btn-hover:hover {
+    border-color: rgba(114, 65, 227, 0.5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(114, 65, 227, 0.05) 100%);
+  }
+
+  /* Uiverse.io Button Styles Adapted */
+  .btn-uiverse {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    height: 38px;
+    overflow: hidden;
+    background-size: 300% 300%;
+    cursor: pointer;
+    backdrop-filter: blur(1rem);
+    border-radius: 5rem;
+    transition: transform 0.5s ease;
+    animation: gradient_uiverse 5s ease infinite;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#080111, #080111),
+                      linear-gradient(137.48deg, #3B0CA9 10%, #7241E3 45%, rgba(249, 249, 249, 0.4) 67%, #3B0CA9 87%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .btn-uiverse .container-stars {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 5rem;
+  }
+
+  .btn-uiverse .text-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-uiverse .glow {
+    position: absolute;
+    display: flex;
+    width: 100%;
+  }
+
+  .btn-uiverse .circle {
+    width: 50%;
+    height: 30px;
+    filter: blur(2rem);
+    animation: pulse_uiverse 4s infinite;
+    z-index: -1;
+  }
+
+  .btn-uiverse .circle:nth-of-type(1) {
+    background: rgba(114, 65, 227, 0.8);
+  }
+
+  .btn-uiverse .circle:nth-of-type(2) {
+    background: rgba(59, 12, 169, 0.7);
+  }
+
+  .group:hover .btn-uiverse .container-stars {
+    z-index: 1;
+  }
+
+  .group:hover .btn-uiverse {
+    transform: scale(1.03);
+  }
+
+  .group:active .btn-uiverse {
+    border-color: #7241E3;
+    background-image: linear-gradient(#080111, #080111);
+    background-clip: padding-box;
+    animation: none;
+  }
+
+  .group:active .btn-uiverse .circle {
+    background: #7241E3;
+  }
+
+  .btn-uiverse .stars {
+    position: relative;
+    background: transparent;
+    width: 100rem;
+    height: 100rem;
+  }
+
+  .btn-uiverse .stars::after {
+    content: "";
+    position: absolute;
+    top: -10rem;
+    left: -50rem;
+    width: 100%;
+    height: 100%;
+    animation: animStarRotate 90s linear infinite;
+    background-image: radial-gradient(#ffffff 1px, transparent 1%);
+    background-size: 50px 50px;
+    opacity: 0.4;
+  }
+
+  .btn-uiverse .stars::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 170%;
+    height: 500%;
+    animation: animStar 60s linear infinite;
+    background-image: radial-gradient(#ffffff 1px, transparent 1%);
+    background-size: 50px 50px;
+    opacity: 0.2;
+  }
+
+  @keyframes animStar {
+    from { transform: translateY(0); }
+    to { transform: translateY(-75rem); }
+  }
+  @keyframes animStarRotate {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0); }
+  }
+  @keyframes gradient_uiverse {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes pulse_uiverse {
+    0% { transform: scale(0.75); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+    100% { transform: scale(0.75); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+  }
+
+  @media (min-width: 640px) {
+    .btn-uiverse {
+      padding: 0 1.5rem;
+      height: 48px;
+    }
+  }
+}

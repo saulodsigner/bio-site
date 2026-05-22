@@ -75,13 +75,13 @@ export default function App() {
       <div className="fixed -bottom-48 -right-48 bg-glow pointer-events-none" />
 
       {/* Background Video */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden mix-blend-screen">
+      <div className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-0 overflow-hidden mix-blend-screen">
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
-          className="w-full h-full object-cover scale-[1.35] opacity-60"
+          className="w-full h-full object-cover opacity-60"
           src="/videobg.mp4" 
         />
         {/* Divs para escurecer o vídeo e melhorar a leitura dos textos */}
